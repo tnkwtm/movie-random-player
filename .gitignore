@@ -11,6 +11,6 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
-# Leave the data folder empty.
+# Leave the empty data folder.
 /data/*
 !/data/.gitkeep
