@@ -1,0 +1,14 @@
+//#NOTE VScode+Dev-container+docker-compose.yml: https://bufferings.hatenablog.com/entry/2020/06/11/233201
+{
+    "name": "Python3.11docker",
+    "workspaceFolder": "/workspaces",
+    "features": {},
+    "dockerFile": "Dockerfile",
+    // "dockerComposeFile": "docker-compose.yml",
+    // "service": "Python3",
+    "extensions": [
+        "ms-python.python",
+    ],
+    // "remoteUser": "root"
+    // "remoteUser": "user"
+}

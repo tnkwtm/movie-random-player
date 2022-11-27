@@ -1,0 +1,18 @@
+services:
+  Python3:
+    restart: always
+    build:
+      # 参照するDockerfileを指定
+      context: ./Dockerfile
+      dockerfile: Dockerfile
+    container_name: 'python3'
+    working_dir: '/workspace'
+    tty: true
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+
+#NOTE Compose Specification(仕様): https://docs.docker.jp/compose/compose-file/index.html#id72
+#NOTE Docker コンテナ内のGUIアプリを起動してホスト側に表示する: https://zukucode.com/2019/07/docker-gui-show.html
+#NOTE Dockerでpython3の環境を作る: https://hymd3a.hatenablog.com/entry/2022/09/18/100616
