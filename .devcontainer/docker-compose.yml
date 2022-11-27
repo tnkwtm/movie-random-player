@@ -6,7 +6,7 @@ services:
       context: ./Dockerfile
       dockerfile: Dockerfile
     container_name: 'python3'
-    working_dir: '/workspace'
+    working_dir: '/workspaces'
     tty: true
     environment:
       - DISPLAY=${DISPLAY}
