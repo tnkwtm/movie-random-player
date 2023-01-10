@@ -1,8 +1,5 @@
 {
     "recommendations": [
-        "donjayamanne.python-extension-pack",
-        "mosapride.zenkaku",
-        "gruntfuggly.todo-tree",
-        "christian-kohler.path-intellisense",
+        "donjayamanne.python-extension-pack"
     ]
 }

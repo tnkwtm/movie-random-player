@@ -1,14 +1,19 @@
-//#NOTE VScode+Dev-container+docker-compose.yml: https://bufferings.hatenablog.com/entry/2020/06/11/233201
+//#NOTE Template: https://github.com/microsoft/vscode-dev-containers/blob/v0.202.3/container-templates/docker-compose/.devcontainer/devcontainer.json
+//#NOTE Dev Container metadata reference: https://containers.dev/implementors/json_reference/
 {
-    "name": "Python3.11docker",
-    "workspaceFolder": "/workspaces",
-    "features": {},
-    "dockerFile": "Dockerfile",
-    // "dockerComposeFile": "docker-compose.yml",
-    // "service": "Python3",
+    // コンポジットファイルが増えたり、異なる名前を使用する場合は、'dockerComposeFile' リストを更新してください。
+    "dockerComposeFile": "docker-compose.yml",
+    // 'service' プロパティは、VS Codeが使用すべきコンテナのサービス名です。この値と .devcontainer/docker-compose.yml を実際のサービス名に更新してください。
+    "service": "app",
+    // オプションの「workspaceFolder」プロパティは、接続時にVS Codeがデフォルトで開くべきパスです。これは通常、.devcontainer/docker-compose.ymlのボリュームマウントになります。
+    "workspaceFolder": "/workspace",
+    // コンテナ作成時にインストールしたいエクステンションのIDを追加します。
     "extensions": [
         "ms-python.python",
+        "ms-python.vscode-pylance"
     ],
-    // "remoteUser": "root"
-    // "remoteUser": "user"
+    // VS Code を閉じた際の挙動です。デフォルトは "stopCompose" でコンテナが自動的に停止します。"none" にするとコンテナは起動したままです。次の行のコメントを外してください。
+    "shutdownAction": "stopCompose", // or "none"
+    // コンテナ作成後にコマンドを実行するために 'postCreateCommand' を使用するため、次の行のコメントを外します。: https://xtech.nikkei.com/it/article/COLUMN/20060227/230916/
+    "postCreateCommand": "uname -a"
 }

@@ -1,18 +1,25 @@
+#NOTE Template: https://github.com/microsoft/vscode-dev-containers/blob/v0.202.3/container-templates/docker-compose/.devcontainer/docker-compose.yml
+#NOTE Compose specification: https://docs.docker.com/compose/compose-file/
+#NOTE Docker Compose - docker-compose.yml リファレンス: https://qiita.com/zembutsu/items/9e9d80e05e36e882caaa
 services:
-  Python3:
-    restart: always
+  app:
+    container_name: GUIpy3-container
+    # Dockerfileの使用は任意ですが、念のため記載しておきます。
     build:
-      # 参照するDockerfileを指定
-      context: ./Dockerfile
+      context: .
       dockerfile: Dockerfile
-    container_name: 'python3'
-    working_dir: '/workspaces'
-    tty: true
+      # [オプション] build args を使ってオプションを設定することができます。例えば、以下の 'VARIANT' は Dockerfile の画像に影響を与えます。
+      args:
+        - VARIANT=none
     environment:
       - DISPLAY=${DISPLAY}
     volumes:
+      # これは、VS Codeがプロジェクトのソースコードと.devcontainer/devcontainer.jsonの "workspaceFolder "の値を見つけると予想される場所です。
+      - ..:/workspace:cached
       - /tmp/.X11-unix:/tmp/.X11-unix
 
-#NOTE Compose Specification(仕様): https://docs.docker.jp/compose/compose-file/index.html#id72
-#NOTE Docker コンテナ内のGUIアプリを起動してホスト側に表示する: https://zukucode.com/2019/07/docker-gui-show.html
-#NOTE Dockerでpython3の環境を作る: https://hymd3a.hatenablog.com/entry/2022/09/18/100616
+    # プロセス終了後にシャットダウンしないように、デフォルトのコマンドを上書きします。
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+    # 次の行のコメントを外すと、すべてのプロセスで非 root ユーザを使用します - 詳細は https://aka.ms/vscode-remote/containers/non-root を参照してください。
+    user: vscode
